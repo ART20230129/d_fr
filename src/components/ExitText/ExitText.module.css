@@ -13,6 +13,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-shadow: 2px 3px 4px #7b71da;
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .nav__link:hover {
