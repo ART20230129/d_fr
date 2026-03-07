@@ -1,0 +1,12 @@
+.home__content {
+  text-align: center;
+}
+
+.items {
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: blue;
+  margin-top: 15vh;
+}

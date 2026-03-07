@@ -1,0 +1,56 @@
+/* фон модального окна  */
+
+.modal{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Модальное окно */
+
+.modal__content{
+  width: 600px;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.modal__header{
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  /* font-size: 20px; */
+}
+
+.modal__filename{
+  padding-top: 10px;
+  font-family: 14px;
+}
+
+.modal__title{
+  font-size: 18px;
+}
+
+.modal__header,
+.modal__footer{
+  padding: 12px;
+}
+
+.modal__body{
+  padding: 10px;  
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.modal__footer{
+  display: flex;
+  justify-content: space-evenly;
+}
+

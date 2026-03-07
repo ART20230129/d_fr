@@ -1,0 +1,9 @@
+.header__container {
+  color: rgb(58, 47, 212);
+  display: flex;
+  /* align-items: center; */
+  background-color: rgba(244, 239, 93, 0.811);
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, .75);
+  justify-content: space-between;
+}
+

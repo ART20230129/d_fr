@@ -1,0 +1,89 @@
+.storage_page{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+caption{
+  font-size: 24px;
+  margin-bottom: 10px;
+  
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th {
+	background-color: #f2f2f2;
+	padding: 12px;
+	text-align: center;
+	border-bottom: 2px solid #ddd;
+  font-weight: 600;
+}
+
+tr:nth-child(2n){
+	background-color: rgb(237, 242, 220);
+}
+
+td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+button {
+	background-color: transparent;
+	background-size: cover;
+	cursor: pointer;
+}
+
+
+.image_button_delete {
+	width: 40px;
+  height: 40px;
+  border: none;
+  background-image: url('../../assets/iconsDelete100.png');
+}
+
+.image_button_edit {
+	width: 40px;
+  height: 40px;
+  border: none;
+  background-image: url('../../assets/iconsEdit.png');
+	margin-left: 15px;
+}
+
+.image_button_download {
+	width: 40px;
+  height: 40px;
+  border: none;
+  background-image: url('../../assets/iconsDownload.png');
+	margin-left: 15px;
+}
+
+.image_button_link {
+	width: 40px;
+  height: 40px;
+  border: none;
+  background-image: url('../../assets/iconsLink.png');
+	margin-left: 15px;
+}
+
+.image_button_delete, .image_button_edit,.image_button_download, .image_button_link {
+		&:hover {
+				opacity: 0.75;
+				transform: scale(1.5);
+		}
+}
+
+.image_button_delete, .image_button_edit,.image_button_download, .image_button_link {
+		&:active {
+				transform: scale(0.9);
+		}
+}
+
+.no_files{
+	text-align: center;
+
+}
