@@ -4,14 +4,17 @@
 
 caption{
   font-size: 24px;
-  margin-bottom: 10px;
-  
+  margin-bottom: 10px;  
 }
 
 table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: collapse;  /* границы соседних ячеек таблицы сливаются в одну */
 	margin-top: 20px;
+}
+
+.storage_page_comment{
+	max-width: 20%;
 }
 
 th {
@@ -23,7 +26,7 @@ th {
 }
 
 tr:nth-child(2n){
-	background-color: rgb(237, 242, 220);
+	background-color: rgb(237, 245, 210);
 }
 
 td {

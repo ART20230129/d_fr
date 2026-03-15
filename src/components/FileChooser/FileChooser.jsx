@@ -53,19 +53,15 @@ export const FileChooser = () => {
           .then((data) => {
             console.log(data)
             getting_list_files()
-
            }
           )
       } catch (error) {
           console.error(error);
       }
       setSelectedFile(null);
-      setUserComments('');   
-                 
-    }  
-        
-  }
-  
+      setUserComments('');                    
+    }          
+  }  
 
   const handleFileChange = (e) =>{
     if (e.target.files) {
@@ -76,7 +72,6 @@ export const FileChooser = () => {
   const handleCommentsChange = (e) =>{
     setUserComments(e.target.value)
   }
-
 
   return (
     <div className={S.form__container}>

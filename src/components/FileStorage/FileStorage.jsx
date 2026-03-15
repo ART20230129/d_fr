@@ -50,7 +50,6 @@ export const FileStorage = () => {
       // const result = fetch(`http://localhost:8000/api/v1/deletefile/${id_file}/`, options)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)   
           getting_list_files()   // обновляем список файлов на странице
           }
         )
@@ -90,7 +89,6 @@ export const FileStorage = () => {
         const result = fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             getting_list_files()
            }
           )
@@ -177,7 +175,7 @@ export const FileStorage = () => {
             <thead>
               <tr>
                 <th>Имя файла</th>
-                <th>Комментарий</th>
+                <th className={S.storage_page_comment}>Комментарий</th>
                 <th>Размер (байт)</th>
                 <th>Дата загрузки</th>
                 <th>Дата последнего скачивания</th>
@@ -188,7 +186,7 @@ export const FileStorage = () => {
               {allUserFiles.map(file =>(
                 <tr key={file.id}>
                   <td>{file.file_name}</td>
-                  <td>{file.comments}</td>
+                  <td className={S.storage_page_comment}>{file.comments}</td>
                   <td>{file.size_file}</td>
                   <td>
                       {new Date(file.uploaded_at).toLocaleDateString('ru-RU',

@@ -1,0 +1,47 @@
+.admin_page{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+caption{
+  color: rgb(189, 7, 7);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 2px 2px 2px rgb(12, 173, 209);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;  /* границы соседних ячеек таблицы сливаются в одну */
+	margin-top: 20px;
+}
+
+th {
+	background-color: #f2f2f2;
+	padding: 12px;
+	text-align: center;
+	border-bottom: 2px solid #ddd;
+  font-weight: 600;
+}
+
+tr:nth-child(2n){
+	background-color: rgb(237, 245, 210);
+}
+
+td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+.admin_page_id{
+  width: 5%;
+}
+
+.admin_page_size{
+  width: 15%;
+}
+
+.admin_page_status{
+  width: 10%;
+}
+

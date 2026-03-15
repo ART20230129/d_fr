@@ -1,9 +1,11 @@
 import S from './LoginForm.module.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ErrorModal } from "../../components/ErrorModal/ErrorModal.jsx"
 
 export const LoginForm = () => {
   const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false)
 
   const [form, setForm] = useState({
     login: '',
@@ -12,7 +14,15 @@ export const LoginForm = () => {
 
   const { login, password } = form;
 
-  const submitPostRequest = (loginPasswordContent)=>{
+  const openModal = () => {
+    setShowModal(true)        
+  }
+
+  const closeModal = () => { // закрываем модальное окно 
+    setShowModal(false) 
+  }
+
+  const submitPostRequest =  (loginPasswordContent)=>{
 		const options = {
 			method: 'POST',
   		headers: { 'Content-Type': 'application/json' },
@@ -20,24 +30,31 @@ export const LoginForm = () => {
 		};
 
 		try {
-			fetch('http://localhost:8000/login/', options)
+			const result = fetch('http://localhost:8000/login/', options)
         .then((response) => {
           response.json().then(function(data) {  
             localStorage.setItem('user_id', data.user_id);
-            localStorage.setItem('token', data.token);            
-          }); 
-
-          if (response.status == 200){
-            navigate('/user', {replace: true})
-          }          
-        })
-
+            localStorage.setItem('token', data.token); 
+            localStorage.setItem('is_staff', data.is_staff)   
+            if (response.status == 200 && data.is_staff == true){//какую страницу открыть админа или юзера
+              return navigate('/admin', {replace: true})
+            }
+            else if(response.status == 200 && data.is_staff == false){  
+              return navigate('/user', {replace: true})
+            }
+            else {
+              openModal()
+            }
+            
+            // if (response.status == 500) {
+            //   return setShowModal(true)
+            // }
+          });           
+        })     
 		} catch (error) {
-			console.log('error: ', );			
-		}
-
-	}
-  
+			console.log('error: ', error);			
+		}   
+	}  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,6 +105,7 @@ export const LoginForm = () => {
         >Отправить</button>
 
       </form>
+      <ErrorModal active={showModal} onClose={closeModal}/>
     </div>
   )
 }
