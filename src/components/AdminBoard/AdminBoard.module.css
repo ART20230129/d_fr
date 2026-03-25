@@ -2,7 +2,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-caption{
+.admin_page_caption{
   color: rgb(189, 7, 7);
   font-size: 24px;
   font-weight: 700;
@@ -45,3 +45,34 @@ td {
   width: 10%;
 }
 
+.no_users{
+	text-align: center;
+	color: rgb(189, 7, 7);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 2px 2px 2px rgb(12, 173, 209);
+}
+
+.button_cell{
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	
+}
+
+.button_delete, .button_user_files, .button_is_staff {
+	border: none;
+}
+
+.button_delete, .button_user_files {
+		&:hover {
+				opacity: 0.75;
+				transform: scale(1.5);
+		}
+}
+
+.button_delete, .button_user_files {
+		&:active {
+				transform: scale(0.9);
+		}
+}
