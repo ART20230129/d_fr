@@ -1,9 +1,11 @@
 import S from './AdminBoard.module.css'
-import { use, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaDatabase, FaTrash, FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { DeleteUserModal } from '../DeleteUserModal/DeleteUserModal';
+import { useNavigate } from 'react-router-dom'
 
 export const AdminBoard = () => {
+  const navigate = useNavigate()
   const [allUser, setAllUser] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [userNameDelete, setUserNameDelete] = useState('')
@@ -21,7 +23,6 @@ export const AdminBoard = () => {
     }
 
     try {
-      // const result = fetch('http://localhost:8000/api/v1/users/', options)
       const result = fetch('http://localhost:8000/users/', options)
         .then((response) => response.json())
         .then((data) => {
@@ -37,8 +38,6 @@ export const AdminBoard = () => {
     gettig_list_users()
   }, [token, user_id])
   
-  console.log(allUser);
-
   const handleShowModal = (id, username) => {
     setdeletedUserId(id) 
     setUserNameDelete(username)
@@ -65,7 +64,6 @@ export const AdminBoard = () => {
     }
     try {
         const result = fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
-        // const result = fetch(`http://localhost:8000/users/${id}/`, options)
           .then((response) => response.json())
           .then((data) => {
             gettig_list_users()
@@ -85,7 +83,6 @@ export const AdminBoard = () => {
     }
     try {
       const result = fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
-        // .then((response) => response.json())
         .then(() => {
           gettig_list_users()
           }
@@ -95,26 +92,28 @@ export const AdminBoard = () => {
     }  
   }
 
-  const handleListUserFiles = () => {
-    console.log('===');
-    
-  }
-  
+  const handleListUserFiles = (id, username) => {
+    localStorage.setItem('selected_user', id);
+    localStorage.setItem('selected_username', username)
+    navigate('/userFiles')
+  } 
 
   return (
     <>
       {allUser.length > 0 ?(
         <div className={S.admin_page}>
           <table>
-            <caption className={S.admin_page_caption}>Список пользователей хранилица MyCloud</caption>
-            <thead>
+            <caption className={S.admin_page_caption}>Список администраторов и пользователей хранилица MyCloud</caption>
+            <thead className={S.head_head}>
               <tr>
                 <th className={S.admin_page_id}>ID</th>
                 <th>Логин</th>
                 <th>E-mail</th>
                 <th className={S.admin_page_size}>Количество файлов</th>
                 <th className={S.admin_page_size}>Размер файлов, Мб</th>
-                <th className={S.admin_page_status}>Статус</th>
+                <th className={S.admin_page_status}>
+                 <p>Статус администратора</p>
+                  </th>
                 <th>Действия</th>
               </tr>
             </thead>
@@ -137,7 +136,7 @@ export const AdminBoard = () => {
                   </td>
                   <td className={S.button_cell}>
                     <button className={S.button_user_files}
-                            onClick={()=>handleListUserFiles(user.id)}
+                            onClick={()=>handleListUserFiles(user.id, user.username)}
                             ><FaDatabase size={25} color='085D80'/>
                     
                     </button>

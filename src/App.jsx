@@ -7,6 +7,7 @@ import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
 import { AdminPage } from './pages/AdminPage/AdminPage';
 import { UserPage } from './pages/UserPage/UserPage';
 import { FileStorage } from './components/FileStorage/FileStorage';
+import { AdminPageUserFiles } from './pages/AdminPageUserFiles/AdminPageUserFiles';
 
 function App() {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ function App() {
         <Route path='/register' element={<RegistrationPage />}/>
         <Route path='/admin' element={<AdminPage/>}/>
         <Route path='/user' element={<UserPage/>}/>
+        <Route path='/userFiles' element={<AdminPageUserFiles/>}/>
       </Route>
     )
   )

@@ -7,6 +7,7 @@
   font-size: 24px;
   font-weight: 700;
   text-shadow: 2px 2px 2px rgb(12, 173, 209);
+	padding-bottom: 15px;
 }
 
 table {
@@ -42,7 +43,7 @@ td {
 }
 
 .admin_page_status{
-  width: 10%;
+  width: 20%;
 }
 
 .no_users{
@@ -75,4 +76,9 @@ td {
 		&:active {
 				transform: scale(0.9);
 		}
+}
+
+.head_head{
+	position: sticky;
+	top: 0px;
 }

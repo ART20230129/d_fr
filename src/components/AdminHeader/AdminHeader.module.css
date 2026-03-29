@@ -1,0 +1,13 @@
+.header__container {
+  color: rgb(58, 47, 212);
+  display: flex;
+  background-color: rgba(244, 239, 93, 0.811);
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, .75);
+  justify-content: space-between;
+}
+
+.header__container__text {
+  color: rgb(58, 47, 212);
+  display: flex;
+  justify-content: space-between;
+}

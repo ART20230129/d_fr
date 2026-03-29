@@ -1,12 +1,15 @@
+import S from './AdminFileManagement.module.css'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from "../../context/AuthContext.js"
 import { EditModal } from "../../components/EditModal/EditModal.jsx"
 import { LinkModal } from '../../components/LinkModal/LinkModal.jsx'
-import S from './FileStorage.module.css'
-import { data } from 'react-router-dom'
 
-export const FileStorage = () => {
-  const {allUserFiles, setAllUserFiles} = useContext(AuthContext);
+
+export const AdminFileManagement = () => {
+  const id_user = localStorage.getItem('selected_user');
+  const selected_username = localStorage.getItem('selected_username')
+  const token = localStorage.getItem('token');
+  const {allUserFiles, setAllUserFiles} = useContext(AuthContext);  
   const {newNameFile, setNewNameFile} = useContext(AuthContext);
 
   const [selectedFileId, setSelectedFileId] = useState('')
@@ -14,9 +17,6 @@ export const FileStorage = () => {
   const [showLinkModal, setShowLinlkModal] = useState(false)
   const [linkUrl, setLinkUrl] = useState('')
   const [linkFileName, setLinkFileName] = useState('')
-  
-  const token = localStorage.getItem('token');
-  const user_id = localStorage.getItem('user_id');
 
   const getting_list_files = () =>{ //функция загрузки списка файлов пользователя
     const options = {
@@ -26,7 +26,7 @@ export const FileStorage = () => {
       }    
     }
     try {
-      const result = fetch('http://localhost:8000/uploadfile/', options)
+      const result = fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -35,27 +35,6 @@ export const FileStorage = () => {
     } catch (error) {
         console.error(error);
     }
-  }
-
-  const handleDeleteFile = (id_file) =>{ //удаление выбранного файла
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Token ${token}`
-      }    
-    }
-
-    try {
-      const result = fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
-        .then((response) => response.json())
-        .then((data) => {
-          getting_list_files()   // обновляем список файлов на странице
-          }
-        )
-    } catch (error) {
-        console.error(error);
-    }
-    
   }
 
   const handleShowModal = (fileName, file_id)=>{ //открываем модальное окно для переименовывания файла
@@ -70,7 +49,29 @@ export const FileStorage = () => {
     setShowLinlkModal(false) //закрываем модальное окно копирования ссылки на файл
   }
 
+  const handleDeleteFile = (id_file) =>{ //удаление выбранного файла
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token ${token}`
+      }    
+    }
+
+    try {
+      const result = fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
+        .then((response) => response.json())
+        .then(() => {
+          getting_list_files()   // обновляем список файлов на странице
+          }
+        )
+    } catch (error) {
+        console.error(error);
+    }
+    
+  }
+
   const handleSubmit = () => { // отправка нового имени файла на сервер
+ 
     const options = {
       method: 'PATCH',
       headers: {        
@@ -95,11 +96,12 @@ export const FileStorage = () => {
     setSelectedFileId('')
     setShowModal(false)    
   }
-
+  
   const handleDownloadFile = async(id_file, file_name) => { //загрузка файла на компьютер из сервера
     const options = {       
       method: 'GET',
       headers: {           
+        // 'Content-Type': 'application/json',
         'Authorization': `Token ${localStorage.getItem('token')}`
       },
     }
@@ -159,13 +161,12 @@ export const FileStorage = () => {
 
     setShowLinlkModal(false) 
   }
-    
   return (
-    <>
+   <>
       {allUserFiles.length > 0 ? (        
       <div className={S.storage_page}>
         <table>
-          <caption>Ваши файлы</caption>
+          <caption>Файлы пользователя {selected_username}</caption>
             <thead className={S.head_head}>
               <tr>
                 <th>Имя файла</th>
@@ -211,5 +212,6 @@ export const FileStorage = () => {
       </div>
       ) : (<p className={S.no_files}>Здесь будут загруженные в хранилище файлы</p>)}
     </>
+    
   )
 }

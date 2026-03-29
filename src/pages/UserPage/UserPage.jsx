@@ -4,9 +4,6 @@ import { FileStorage } from "../../components/FileStorage/FileStorage"
 import { LoginHeader } from "../../components/LoginHeader/LoginHeader"
 import { AuthContext } from "../../context/AuthContext.js"
 
-
-
-
 export const UserPage = () => {
   const [allUserFiles, setAllUserFiles] = useState([])
   const [newNameFile, setNewNameFile] = useState('')
@@ -30,7 +27,6 @@ export const UserPage = () => {
     } catch (error) {
         console.error(error);
     }
-
   }, [token, user_id])
  
 
@@ -39,7 +35,6 @@ export const UserPage = () => {
       <LoginHeader/>
       <FileChooser/>
       <FileStorage/>
-    </AuthContext.Provider>
-    
+    </AuthContext.Provider>    
   )
 }
