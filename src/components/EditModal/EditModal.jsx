@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import ReactDom from 'react-dom'
 import { AuthContext } from "../../context/AuthContext.js"
 import S from './EditModal.module.css'

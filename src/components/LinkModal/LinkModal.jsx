@@ -1,7 +1,5 @@
-import React from 'react'
 import S from './LinkModal.module.css'
 import ReactDom from 'react-dom'
-import { AuthContext } from "../../context/AuthContext.js"
 
 export const LinkModal = ({active, link, fileName, onClose, onCopy}) => {
   if(!active){

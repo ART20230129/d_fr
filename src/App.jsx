@@ -6,7 +6,6 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
 import { AdminPage } from './pages/AdminPage/AdminPage';
 import { UserPage } from './pages/UserPage/UserPage';
-import { FileStorage } from './components/FileStorage/FileStorage';
 import { AdminPageUserFiles } from './pages/AdminPageUserFiles/AdminPageUserFiles';
 
 function App() {

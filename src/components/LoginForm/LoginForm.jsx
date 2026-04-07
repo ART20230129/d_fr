@@ -30,7 +30,7 @@ export const LoginForm = () => {
 		};
 
 		try {
-			const result = fetch('http://localhost:8000/login/', options)
+			fetch('http://localhost:8000/login/', options)
         .then((response) => {
           response.json().then(function(data) {  
             localStorage.setItem('user_id', data.user_id);

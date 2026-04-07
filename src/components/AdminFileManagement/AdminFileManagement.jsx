@@ -1,12 +1,12 @@
 import S from './AdminFileManagement.module.css'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from "../../context/AuthContext.js"
 import { EditModal } from "../../components/EditModal/EditModal.jsx"
 import { LinkModal } from '../../components/LinkModal/LinkModal.jsx'
 
 
 export const AdminFileManagement = () => {
-  const id_user = localStorage.getItem('selected_user');
+  const id_user = localStorage.getItem('selected_user');  
   const selected_username = localStorage.getItem('selected_username')
   const token = localStorage.getItem('token');
   const {allUserFiles, setAllUserFiles} = useContext(AuthContext);  
@@ -70,8 +70,7 @@ export const AdminFileManagement = () => {
     
   }
 
-  const handleSubmit = () => { // отправка нового имени файла на сервер
- 
+  const handleSubmit = () => { // отправка нового имени файла на сервер 
     const options = {
       method: 'PATCH',
       headers: {        
@@ -161,6 +160,7 @@ export const AdminFileManagement = () => {
 
     setShowLinlkModal(false) 
   }
+  
   return (
    <>
       {allUserFiles.length > 0 ? (        

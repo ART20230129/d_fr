@@ -96,7 +96,6 @@ export const RegisterForm = () => {
 
     const error= validateForm();
 
-    // Уточнить необходимость!!! может быть просто validateForm()  ???
     if(error){
       console.log('err ---');
       return

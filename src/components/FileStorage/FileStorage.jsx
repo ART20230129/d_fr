@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from "../../context/AuthContext.js"
 import { EditModal } from "../../components/EditModal/EditModal.jsx"
 import { LinkModal } from '../../components/LinkModal/LinkModal.jsx'
 import S from './FileStorage.module.css'
-import { data } from 'react-router-dom'
 
 export const FileStorage = () => {
   const {allUserFiles, setAllUserFiles} = useContext(AuthContext);
@@ -16,9 +15,8 @@ export const FileStorage = () => {
   const [linkFileName, setLinkFileName] = useState('')
   
   const token = localStorage.getItem('token');
-  const user_id = localStorage.getItem('user_id');
 
-  const getting_list_files = () =>{ //функция загрузки списка файлов пользователя
+  const getting_list_files = async () =>{ //функция загрузки списка файлов пользователя
     const options = {
       method: 'GET',
       headers: {
@@ -26,7 +24,7 @@ export const FileStorage = () => {
       }    
     }
     try {
-      const result = fetch('http://localhost:8000/uploadfile/', options)
+      await fetch('http://localhost:8000/uploadfile/', options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -37,7 +35,7 @@ export const FileStorage = () => {
     }
   }
 
-  const handleDeleteFile = (id_file) =>{ //удаление выбранного файла
+  const handleDeleteFile = async (id_file) =>{ //удаление выбранного файла
     const options = {
       method: 'DELETE',
       headers: {
@@ -46,9 +44,9 @@ export const FileStorage = () => {
     }
 
     try {
-      const result = fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
+      await fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
         .then((response) => response.json())
-        .then((data) => {
+        .then(() => {
           getting_list_files()   // обновляем список файлов на странице
           }
         )
@@ -70,7 +68,7 @@ export const FileStorage = () => {
     setShowLinlkModal(false) //закрываем модальное окно копирования ссылки на файл
   }
 
-  const handleSubmit = () => { // отправка нового имени файла на сервер
+  const handleSubmit = async () => { // отправка нового имени файла на сервер
     const options = {
       method: 'PATCH',
       headers: {        
@@ -81,9 +79,9 @@ export const FileStorage = () => {
     }
 
     try {
-        const result = fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
+        await fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
           .then((response) => response.json())
-          .then((data) => {
+          .then(() => {
             getting_list_files()
            }
           )
@@ -105,7 +103,7 @@ export const FileStorage = () => {
     }
 
     try {
-      const result = await fetch(`http://localhost:8000/downloadfile/${id_file}/`, options)
+      await fetch(`http://localhost:8000/downloadfile/${id_file}/`, options)
         .then((response) => response.blob())
           .then((myBlob) => {
             // Создаем URL для Blob
@@ -138,7 +136,7 @@ export const FileStorage = () => {
       },
     }
 
-    const result = await fetch(`http://localhost:8000/downloadlinkfile/${id_file}/`, options)
+    await fetch(`http://localhost:8000/downloadlinkfile/${id_file}/`, options)
       .then((response) => response.json())
       .then((data) => {
         const link_url = `http://localhost:8000/downloadfilefromlink/?link=${data['link']}`

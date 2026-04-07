@@ -18,7 +18,7 @@ export const UserPage = () => {
       }    
     }
     try {
-      const result = fetch('http://localhost:8000/uploadfile/', options)
+      fetch('http://localhost:8000/uploadfile/', options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)       

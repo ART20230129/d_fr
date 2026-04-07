@@ -5,6 +5,8 @@ import { DeleteUserModal } from '../DeleteUserModal/DeleteUserModal';
 import { useNavigate } from 'react-router-dom'
 
 export const AdminBoard = () => {
+  localStorage.removeItem('selected_user')
+  localStorage.removeItem('selected_username')
   const navigate = useNavigate()
   const [allUser, setAllUser] = useState([])
   const [showModal, setShowModal] = useState(false)
@@ -36,7 +38,8 @@ export const AdminBoard = () => {
 
   useEffect(()=>{
     gettig_list_users()
-  }, [token, user_id])
+  }, [])
+  // }, [token, user_id])
   
   const handleShowModal = (id, username) => {
     setdeletedUserId(id) 
@@ -93,6 +96,8 @@ export const AdminBoard = () => {
   }
 
   const handleListUserFiles = (id, username) => {
+    console.log('id, username', id, username);
+    
     localStorage.setItem('selected_user', id);
     localStorage.setItem('selected_username', username)
     navigate('/userFiles')

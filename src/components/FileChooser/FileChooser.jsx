@@ -1,4 +1,4 @@
-import {useState, useRef, useContext} from 'react'
+import {useState,  useContext} from 'react'
 import S from './FileChooser.module.css'
 import { AuthContext } from "../../context/AuthContext.js"
 

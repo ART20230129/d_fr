@@ -1,4 +1,3 @@
-import { use } from 'react';
 import S from './BackText.module.css';
 import { useNavigate } from 'react-router-dom';
 

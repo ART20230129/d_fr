@@ -18,7 +18,7 @@ export const AdminPageUserFiles = () => {
           }    
         }
         try {
-          const result = fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
+          fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
             .then((response) => response.json())
             .then((data) => {
               setAllUserFiles(data)       
@@ -26,9 +26,9 @@ export const AdminPageUserFiles = () => {
             )
         } catch (error) {
             console.error(error);
-        }
-    
-      }, [token, id_user])
+        }    
+      }, [])
+      // }, [token, id_user])
 
   return (
     <>
