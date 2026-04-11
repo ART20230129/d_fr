@@ -1,13 +1,13 @@
 import {useState, useContext} from 'react'
-import S from './FileChooser.module.css'
+import S from './AdminFileChooser.module.css'
 import { AuthContext } from "../../context/AuthContext.js"
 
 
-export const FileChooser = () => { 
+export const AdminFileChooser = () => { 
   /* eslint-disable no-unused-vars */
   const {allUserFiles, setAllUserFiles} = useContext(AuthContext);
   const token = localStorage.getItem('token')
-  const user_id = localStorage.getItem('user_id')
+  const user_id = localStorage.getItem('selected_user')
 
   const[selectedFile, setSelectedFile] = useState(null)
   const[userComments, setUserComments] = useState('')
@@ -20,7 +20,7 @@ export const FileChooser = () => {
       }    
     }
     try {
-      fetch('http://localhost:8000/uploadfile/', options)
+      fetch(`http://localhost:8000/uploadfileuser/${user_id}/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -49,7 +49,7 @@ export const FileChooser = () => {
       }
 
       try {
-        fetch('http://localhost:8000/uploadfile/', options)
+        fetch(`http://localhost:8000/uploadfileuser/${user_id}/`, options)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
@@ -94,3 +94,4 @@ export const FileChooser = () => {
     </div>
   )
 }
+

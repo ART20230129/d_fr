@@ -12,9 +12,7 @@ export const AdminBoard = () => {
   const [showModal, setShowModal] = useState(false)
   const [userNameDelete, setUserNameDelete] = useState('')
   const [deletedUserId, setdeletedUserId] = useState('')
-
   const token = localStorage.getItem('token');
-  const user_id = localStorage.getItem('user_id');
 
   const gettig_list_users = ()=>{
     const options = {
@@ -25,7 +23,7 @@ export const AdminBoard = () => {
     }
 
     try {
-      const result = fetch('http://localhost:8000/users/', options)
+      fetch('http://localhost:8000/users/', options)
         .then((response) => response.json())
         .then((data) => {
           setAllUser(data)       
@@ -39,7 +37,6 @@ export const AdminBoard = () => {
   useEffect(()=>{
     gettig_list_users()
   }, [])
-  // }, [token, user_id])
   
   const handleShowModal = (id, username) => {
     setdeletedUserId(id) 
@@ -66,9 +63,9 @@ export const AdminBoard = () => {
       body: JSON.stringify({is_staff: !is_staff})   
     }
     try {
-        const result = fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
+        fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
           .then((response) => response.json())
-          .then((data) => {
+          .then(() => {
             gettig_list_users()
            }
           )
@@ -85,7 +82,7 @@ export const AdminBoard = () => {
       }    
     }
     try {
-      const result = fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
+      fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
         .then(() => {
           gettig_list_users()
           }
@@ -95,9 +92,7 @@ export const AdminBoard = () => {
     }  
   }
 
-  const handleListUserFiles = (id, username) => {
-    console.log('id, username', id, username);
-    
+  const handleListUserFiles = (id, username) => {    
     localStorage.setItem('selected_user', id);
     localStorage.setItem('selected_username', username)
     navigate('/userFiles')
@@ -142,7 +137,7 @@ export const AdminBoard = () => {
                   <td className={S.button_cell}>
                     <button className={S.button_user_files}
                             onClick={()=>handleListUserFiles(user.id, user.username)}
-                            ><FaDatabase size={25} color='085D80'/>
+                            ><FaDatabase size={25} color='#085D80'/>
                     
                     </button>
                     <button className={S.button_delete} 

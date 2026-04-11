@@ -26,7 +26,7 @@ export const AdminFileManagement = () => {
       }    
     }
     try {
-      const result = fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
+      fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -58,7 +58,7 @@ export const AdminFileManagement = () => {
     }
 
     try {
-      const result = fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
+      fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
         .then((response) => response.json())
         .then(() => {
           getting_list_files()   // обновляем список файлов на странице
@@ -81,9 +81,9 @@ export const AdminFileManagement = () => {
     }
 
     try {
-        const result = fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
+        fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
           .then((response) => response.json())
-          .then((data) => {
+          .then(() => {
             getting_list_files()
            }
           )
@@ -106,7 +106,7 @@ export const AdminFileManagement = () => {
     }
 
     try {
-      const result = await fetch(`http://localhost:8000/downloadfile/${id_file}/`, options)
+      await fetch(`http://localhost:8000/downloadfile/${id_file}/`, options)
         .then((response) => response.blob())
           .then((myBlob) => {
             // Создаем URL для Blob
@@ -139,7 +139,7 @@ export const AdminFileManagement = () => {
       },
     }
 
-    const result = await fetch(`http://localhost:8000/downloadlinkfile/${id_file}/`, options)
+    await fetch(`http://localhost:8000/downloadlinkfile/${id_file}/`, options)
       .then((response) => response.json())
       .then((data) => {
         const link_url = `http://localhost:8000/downloadfilefromlink/?link=${data['link']}`
@@ -160,7 +160,7 @@ export const AdminFileManagement = () => {
 
     setShowLinlkModal(false) 
   }
-  
+
   return (
    <>
       {allUserFiles.length > 0 ? (        

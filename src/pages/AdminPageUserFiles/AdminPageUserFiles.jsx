@@ -1,5 +1,5 @@
 import { AdminHeader } from "../../components/AdminHeader/AdminHeader"
-import { FileChooser } from "../../components/FileChooser/FileChooser"
+import { AdminFileChooser } from "../../components/AdminFileChooser/AdminFileChooser"
 import { AdminFileManagement } from "../../components/AdminFileManagement/AdminFileManagement"
 import { AuthContext } from "../../context/AuthContext.js"
 import { useState, useEffect } from "react"
@@ -28,13 +28,12 @@ export const AdminPageUserFiles = () => {
             console.error(error);
         }    
       }, [])
-      // }, [token, id_user])
 
   return (
     <>
       <AuthContext.Provider value ={{allUserFiles, setAllUserFiles, newNameFile, setNewNameFile}}>
         <AdminHeader/>
-        <FileChooser/>
+        <AdminFileChooser/>
         <AdminFileManagement/>
       </AuthContext.Provider>
 
