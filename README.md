@@ -47,9 +47,3 @@
    ```bash
    npm run build
    ```
-
-   после сборки:
-
-   ```bash
-   npm run preview
-   ```

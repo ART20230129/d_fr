@@ -19,8 +19,7 @@ function App() {
         <Route path='/user' element={<UserPage/>}/>
         <Route path='/userFiles' element={<AdminPageUserFiles/>}/>
       </Route>
-    ),
-      {basename: "/d_fr"}
+    )
   )
 
   return (
