@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import { AuthContext } from "../../context/AuthContext.js"
 import { EditModal } from "../../components/EditModal/EditModal.jsx"
 import { LinkModal } from '../../components/LinkModal/LinkModal.jsx'
+import API_BASE_URL from '../../config'
 
 
 export const AdminFileManagement = () => {
@@ -26,7 +27,7 @@ export const AdminFileManagement = () => {
       }    
     }
     try {
-      fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
+      fetch(`${API_BASE_URL}/uploadfileuser/${id_user}/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -58,7 +59,7 @@ export const AdminFileManagement = () => {
     }
 
     try {
-      fetch(`http://localhost:8000/deletefile/${id_file}/`, options)
+      fetch(`${API_BASE_URL}/deletefile/${id_file}/`, options)
         .then((response) => response.json())
         .then(() => {
           getting_list_files()   // обновляем список файлов на странице
@@ -81,7 +82,7 @@ export const AdminFileManagement = () => {
     }
 
     try {
-        fetch(`http://localhost:8000/renamefile/${selectedFileId}/`, options)
+        fetch(`${API_BASE_URL}/renamefile/${selectedFileId}/`, options)
           .then((response) => response.json())
           .then(() => {
             getting_list_files()
@@ -106,7 +107,7 @@ export const AdminFileManagement = () => {
     }
 
     try {
-      await fetch(`http://localhost:8000/downloadfile/${id_file}/`, options)
+      await fetch(`${API_BASE_URL}/downloadfile/${id_file}/`, options)
         .then((response) => response.blob())
           .then((myBlob) => {
             // Создаем URL для Blob
@@ -139,10 +140,10 @@ export const AdminFileManagement = () => {
       },
     }
 
-    await fetch(`http://localhost:8000/downloadlinkfile/${id_file}/`, options)
+    await fetch(`${API_BASE_URL}/downloadlinkfile/${id_file}/`, options)
       .then((response) => response.json())
       .then((data) => {
-        const link_url = `http://localhost:8000/downloadfilefromlink/?link=${data['link']}`
+        const link_url = `${API_BASE_URL}/downloadfilefromlink/?link=${data['link']}`
         console.log(link_url) 
         setLinkUrl(link_url) 
         setShowLinlkModal(true)   

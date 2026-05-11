@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { FaDatabase, FaTrash, FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { DeleteUserModal } from '../DeleteUserModal/DeleteUserModal';
 import { useNavigate } from 'react-router-dom'
+import API_BASE_URL from '../../config'
+
 
 export const AdminBoard = () => {
   localStorage.removeItem('selected_user')
@@ -23,7 +25,7 @@ export const AdminBoard = () => {
     }
 
     try {
-      fetch('http://localhost:8000/users/', options)
+      fetch(`${API_BASE_URL}/users/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUser(data)       
@@ -63,7 +65,7 @@ export const AdminBoard = () => {
       body: JSON.stringify({is_staff: !is_staff})   
     }
     try {
-        fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
+        fetch(`${API_BASE_URL}/api/v1/users/${id}/`, options)
           .then((response) => response.json())
           .then(() => {
             gettig_list_users()
@@ -82,7 +84,7 @@ export const AdminBoard = () => {
       }    
     }
     try {
-      fetch(`http://localhost:8000/api/v1/users/${id}/`, options)
+      fetch(`${API_BASE_URL}/api/v1/users/${id}/`, options)
         .then(() => {
           gettig_list_users()
           }

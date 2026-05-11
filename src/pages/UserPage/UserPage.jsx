@@ -3,6 +3,7 @@ import { FileChooser } from "../../components/FileChooser/FileChooser"
 import { FileStorage } from "../../components/FileStorage/FileStorage"
 import { LoginHeader } from "../../components/LoginHeader/LoginHeader"
 import { AuthContext } from "../../context/AuthContext.js"
+import API_BASE_URL from '../../config'
 
 export const UserPage = () => {
   const [allUserFiles, setAllUserFiles] = useState([])
@@ -18,7 +19,7 @@ export const UserPage = () => {
       }    
     }
     try {
-      fetch('http://localhost:8000/uploadfile/', options)
+      fetch(`${API_BASE_URL}/uploadfile/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)       

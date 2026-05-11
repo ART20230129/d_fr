@@ -1,6 +1,7 @@
 import {useState, useContext} from 'react'
 import S from './AdminFileChooser.module.css'
 import { AuthContext } from "../../context/AuthContext.js"
+import API_BASE_URL from '../../config'
 
 
 export const AdminFileChooser = () => { 
@@ -20,7 +21,7 @@ export const AdminFileChooser = () => {
       }    
     }
     try {
-      fetch(`http://localhost:8000/uploadfileuser/${user_id}/`, options)
+      fetch(`${API_BASE_URL}/uploadfileuser/${user_id}/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -49,7 +50,7 @@ export const AdminFileChooser = () => {
       }
 
       try {
-        fetch(`http://localhost:8000/uploadfileuser/${user_id}/`, options)
+        fetch(`${API_BASE_URL}/uploadfileuser/${user_id}/`, options)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)

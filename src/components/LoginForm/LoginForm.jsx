@@ -2,6 +2,7 @@ import S from './LoginForm.module.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ErrorModal } from "../../components/ErrorModal/ErrorModal.jsx"
+import API_BASE_URL from '../../config'
 
 export const LoginForm = () => {
   const navigate = useNavigate()
@@ -30,7 +31,7 @@ export const LoginForm = () => {
 		};
 
 		try {
-			fetch('http://localhost:8000/login/', options)
+			fetch(`${API_BASE_URL}/login/`, options)
         .then((response) => {
           response.json().then(function(data) {  
             localStorage.setItem('user_id', data.user_id);

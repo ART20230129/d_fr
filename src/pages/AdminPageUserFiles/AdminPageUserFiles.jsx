@@ -3,6 +3,7 @@ import { AdminFileChooser } from "../../components/AdminFileChooser/AdminFileCho
 import { AdminFileManagement } from "../../components/AdminFileManagement/AdminFileManagement"
 import { AuthContext } from "../../context/AuthContext.js"
 import { useState, useEffect } from "react"
+import API_BASE_URL from '../../config'
 
 export const AdminPageUserFiles = () => {
     const [allUserFiles, setAllUserFiles] = useState([])
@@ -18,7 +19,7 @@ export const AdminPageUserFiles = () => {
           }    
         }
         try {
-          fetch(`http://localhost:8000/uploadfileuser/${id_user}/`, options)
+          fetch(`${API_BASE_URL}/uploadfileuser/${id_user}/`, options)
             .then((response) => response.json())
             .then((data) => {
               setAllUserFiles(data)       

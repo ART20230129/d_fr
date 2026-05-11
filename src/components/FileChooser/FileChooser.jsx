@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import S from './FileChooser.module.css'
 import { AuthContext } from "../../context/AuthContext.js"
-
+import API_BASE_URL from '../../config'
 
 export const FileChooser = () => { 
   /* eslint-disable no-unused-vars */
@@ -20,7 +20,7 @@ export const FileChooser = () => {
       }    
     }
     try {
-      fetch('http://localhost:8000/uploadfile/', options)
+      fetch(`${API_BASE_URL}/uploadfile/`, options)
         .then((response) => response.json())
         .then((data) => {
           setAllUserFiles(data)
@@ -49,7 +49,7 @@ export const FileChooser = () => {
       }
 
       try {
-        fetch('http://localhost:8000/uploadfile/', options)
+        fetch(`${API_BASE_URL}/uploadfile/`, options)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)

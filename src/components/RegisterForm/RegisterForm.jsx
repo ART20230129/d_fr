@@ -1,7 +1,7 @@
-
 import { useState, useReducer } from 'react';
 import S from './RegisterForm.module.css'
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config'
 
 const initialState = {
   errorLoginMessage: '',
@@ -65,7 +65,7 @@ export const RegisterForm = () => {
 		};
 
 		try {
-			fetch('http://localhost:8000/register/', options)
+			fetch(`${API_BASE_URL}/register/`, options)
         .then((response) => {
 
           response.json().then(function(data) {  

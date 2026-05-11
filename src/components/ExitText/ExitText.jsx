@@ -1,5 +1,6 @@
 import { useNavigate} from 'react-router-dom';
 import S from './ExitText.module.css';
+import API_BASE_URL from '../../config'
 
 export const ExitText = () => {
   const navigate = useNavigate()
@@ -16,7 +17,7 @@ export const ExitText = () => {
     };
 
 		try {
-			fetch('http://localhost:8000/logout/', options)
+			fetch(`${API_BASE_URL}/logout/`, options)
         .then((response) => {
           if (response.status == 200){
             navigate('/', {replace: true}) //если пользователь нажимает кнопку «Назад», 
